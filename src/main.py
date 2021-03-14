@@ -6,6 +6,7 @@ kivy.require('1.11.1')
 
 from kivy.app import App
 
+from jnius import autoclass
 from plyer import sms, vibrator
 from android.permissions import check_permission, request_permissions, Permission # unresolved import is OK
 
@@ -43,6 +44,9 @@ class SendTestSMS(GridLayout):
 class SSBApp(App):
 
     def build(self):
+        SMS = autoclass('org.ssb.SMS')
+        print("[myDEBUG] java test")
+        print(SMS.test)
         vibrator.vibrate(0.3)
         return SendTestSMS()
 
